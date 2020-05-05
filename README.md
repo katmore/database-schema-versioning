@@ -8,7 +8,7 @@ The *Database Schema Versioning Specification* (or "db-schema-spec" for short) d
 
 #### Release History
 *major.minor release history*
-  * *db-schema-spec* : `1.1`* -  Initial release
+  * *db-schema-spec : `1.1`* -  Initial release
 
 ---
 ## Terminology
