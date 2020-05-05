@@ -1,4 +1,4 @@
-The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations"). Currently, only the [specification](#database-schema-versioning-specification) has been released; a related set of tools and implementations will be released in the future.
+The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations"). Currently, only a [specification](#database-schema-versioning-specification) has been released; a related set of tools and implementations will be released in the future.
 
 # Database Schema Versioning Specification
 The *Database Schema Versioning Specification* (or "db-schema-spec" for short) describes the structure of a single conceptual database and its successive revisions.
