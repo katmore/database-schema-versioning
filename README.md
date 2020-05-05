@@ -33,7 +33,7 @@ This section provides details regarding the directory structure and [JSON object
 ### schema root
 The *schema root* must be a directory that contains all resources needed to describe a single [*database schema*](#terminology). It should be a directory specific to the schema and should be the same name as the schema. It must contain a [*schema.json*](#schemajson) file.
 
-Consider the example project named `my-project` as seen in the section below. It has the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `some-schema` and `another schema`. Therefore, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `some-schema`; likewise, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `another-schema`.
+Consider the example project named `my-project` as seen in the section below. It has the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `something` and `another schema`. Therefore, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `something`; likewise, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `another-something`.
 
 **Example `my-project` contents...**
 ```txt
@@ -41,7 +41,7 @@ my-project/ ->
    bin/ ->
       ...
    db-schema/ ->
-      some-schema/ ->
+      something/ ->
          schema.json
          2019/ ->
             19.081501/ ->
@@ -52,7 +52,7 @@ my-project/ ->
             20.043001/ ->
                revisions.sql
                version.json
-      another-schema/ ->
+      another-something/ ->
          schema.json
          1.0/ ->
             revisions.sql
@@ -78,7 +78,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 ```json
 {
    "db-schema-spec": "1.1",
-   "name" : "some-schema",
+   "name" : "something",
    "system-type" : "mysql",
    "current-version" : "20.043001",
    "version-history" : {
@@ -93,7 +93,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 ```json
 {
    "db-schema-spec": "1.1",
-   "name" : "another-schema",
+   "name" : "another-something",
    "system-type" : "mysql",
    "current-version" : "1.1",
    "version-history" : {
@@ -119,7 +119,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 ```json
 {
    "db-schema-spec": "1.1",
-   "schema" : "some-schema",
+   "schema" : "something",
    "system-type" : "mysql",
    "version" : "200430.01",
    "command" : [
@@ -132,7 +132,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 ```json
 {
    "db-schema-spec": "1.1",
-   "schema" : "another-schema",
+   "schema" : "another-something",
    "system-type" : "mysql",
    "version" : "1.0",
    "command" : [
