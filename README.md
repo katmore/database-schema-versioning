@@ -1,15 +1,12 @@
 # Database Schema Versioning
+
 This goal of this project is to establish a specification to describe database revisions that lends itself to programmatic access, yet is easy for a human to examine.
 
-## Specification
+## Latest Release
 ```json
----
-Title: Database Schema Versioning
-Version: 1.1.0
-Maintainer: D. Bird <retran@gmail.com>
-Authors:
-- D. Bird <retran@gmail.com>
-...
+{
+   "db-schema-spec": "1.1.0"
+}
 ```
 
 ---
