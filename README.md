@@ -1,6 +1,7 @@
-This project contains a specification which describes a database structure and its revisions. The goal is to provide easy programmatic access, yet allow direct human interaction. This will facilitate the ongoing automation of database changes; known as "database revisions" or "database migrations".
+The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations").
 
 # Database Schema Versioning Specification
+The *Database Schema Versioning Specification* (or "db-schema-spec" for short) describes the structure of a single conceptual database and its successive revisions.
 
 #### Latest Release
 ```json
@@ -9,7 +10,7 @@ This project contains a specification which describes a database structure and i
 }
 ```
 
-#### Release Summary
+#### Specification Releases
   * v**1.1** : Initial release
 
 ---
@@ -68,7 +69,7 @@ my-project/ ->
 ### schema.json
 The **schema.json** file contains a single [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a [*database schema*](#terminology). It must be located in the top-level of the [*schema root*](#schema-root) which it describes. The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) must contain all the properties as described in the following bullet-point list.
 
- * **db-schema-spec** : The [Database Schema Versioning](#release-summary) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
+ * **db-schema-spec** : The [Database Schema Versioning](#specification-releases) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
  * **name** : The [*schema name*](#terminology) of the [*database schema*](#terminology) being described.
  * **system-type** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
  * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
@@ -110,7 +111,7 @@ The **version.json** file contains a single [JSON object](https://tools.ietf.org
 
 The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.json*](#versionjson) must contain ALL of the following properties as described:
 
-  * **db-schema-spec** : The [Database Schema Versioning](#release-summary) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
+  * **db-schema-spec** : The [Database Schema Versioning](#specification-releases) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
   * **schema** : The name of database schema. It should be cross-checked to match the `name` property of the referring [*schema.json*](#schemajson) file.
   * **version** : A string with the value of the [*schema version*](#terminology) that is being described. It should be cross-checked to match with the referring property in the `version-history` object of the [*schema.json*](#schemajson) file.
   * **source** : An array of strings; each value is a path (relative to the [*version root*](#resources)) to a source file that must be successfully executed. Each source file must be executed in the order it occurs in the array.
