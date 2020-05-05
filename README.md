@@ -76,7 +76,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
  * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
  * **version-history** : An object with each property name corresponding to a [*schema-version*](#terminology) and the value being the path to the corresponding [*version root*](#resources) directory (relative to the [*schema root*](#schema-root)). Therefore, each path must point to a directory containing a [*version.json*](#versionjson) file.
 
-**schema.json* example #1...**
+***schema.json* example #1...**
 ```json
 {
    "db-schema-spec": "1.1",
@@ -91,7 +91,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 }
 ```
 
-**schema.json* example #2...**
+***schema.json* example #2...**
 ```json
 {
    "db-schema-spec": "1.1",
@@ -118,7 +118,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
   * **source** : An array of strings; each value is a path (relative to the [*version root*](#resources)) to a source file that must be successfully executed. Each source file must be executed in the order it occurs in the array.
 
 #### version.json examples
-**version.json* example #1...**
+***version.json* example #1...**
 ```json
 {
    "db-schema-spec": "1.1",
@@ -131,7 +131,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 }
 ```
 
-**version.json* example #2...**
+***version.json* example #2...**
 ```json
 {
    "db-schema-spec": "1.1",
