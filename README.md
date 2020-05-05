@@ -143,3 +143,8 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
    ]
 }
 ```
+
+# Legal
+"database-schema-versioning" is distributed under the terms of the [MIT license](LICENSE) or the [GPLv3](GPLv3) license.
+
+Copyright (c) 2015-2020, Doug Bird. All rights reserved.
