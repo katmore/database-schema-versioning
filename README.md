@@ -30,7 +30,7 @@ Additionally, the key words outlined in the following section shall be interpret
 ### schema root
 The *schema root* must be a directory that contains all resources needed to describe a single [*database schema*](#terminology). It should be a directory specific to the schema and should be the same name as the schema. It must contain a [*schema.json*](#schemajson) file.
 
-Consider an example project named `my-project` with the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `some-schema` and `another schema`. Therefore, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for `some-schema`; likewise, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for `another-schema`.
+Consider an example project named `my-project` with the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `some-schema` and `another schema`. Therefore, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `some-schema`; likewise, the path `my-project/db-schema/some-schema` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `another-schema`.
 
 **Example project contents...**
 ```txt
