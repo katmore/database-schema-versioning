@@ -22,9 +22,9 @@ Additionally, the key words outlined in the following section shall be interpret
 ---
 ## Resources
   * [**schema root**](#schema-root) : The directory which contains all resources needed to describe a single database schema.
-  * [**schema.json**](#schemajson) : The file containing the a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *database schema*. It must be contained within the *schema root*.
+  * [**schema.json**](#schemajson) : The file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *database schema*. This file must be contained within the *schema root*.
   * [**version root**](#version-root) : A directory which contains all resources needed to describe a single *schema version*.
-  * [**version.json**](#schemajson) : A file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *schema version*. It must be contained within the *version root*.
+  * [**version.json**](#schemajson) : A file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *schema version*. This file must be contained within the *version root*.
   
 ---
 ### schema root
