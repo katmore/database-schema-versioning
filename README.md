@@ -16,7 +16,7 @@ The key words "must", "must not", "required", "shall", "shall not", "should", "s
 Additionally, the key words outlined in the following section shall be interpreted as described.
 
  * **schema name**  : The "name" for a particular schema; it should be brief and reasonably descriptive.
- * **schema version** : A numeric "version" which identifies a particular revision of a database schema. It must be a numeric value, expressed either as an integer or a float using a decimal point (this makes it simple to keep sorting/succession consistent across different programming environments).
+ * **schema version** : A numeric "version" which identifies a particular state of a database's structure. It must be a numeric value, expressed either as an integer or a float using a decimal point (this makes it simple to keep sorting/succession consistent across different programming environments).
  * **database schema**
 
 ---
