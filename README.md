@@ -117,7 +117,6 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
   * **version** : A string with the value of the [*schema version*](#terminology) that is being described. It should be cross-checked to match with the referring property in the `version-history` object of the [*schema.json*](#schemajson) file.
   * **source** : An array of strings; each value is a path (relative to the [*version root*](#resources)) to a source file that must be successfully executed. Each source file must be executed in the order it occurs in the array.
 
-#### version.json examples
 ***version.json* example #1...**
 ```json
 {
