@@ -33,7 +33,7 @@ This section provides details regarding the directory structure and [JSON object
 ### schema root
 The *schema root* must be a directory that contains all resources needed to describe a single [*database schema*](#terminology). It should be a directory specific to the schema and should be the same name as the schema. It must contain a [*schema.json*](#schemajson) file.
 
-Consider the example project named `my-project` as seen in the section below. It has the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `something` and `another schema`. Therefore, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `something`; likewise, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `another-something`.
+Consider the example project named `my-project` as seen in the section below. It has the following directory structure: the top-level contains a directory named `db-schema` that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `something` and `another something`. Therefore, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `something`; likewise, the path `my-project/db-schema/something` is the [*schema root*](#schema-root) for the [*database schema*](#terminology) `another-something`.
 
 **Example `my-project` contents...**
 ```txt
