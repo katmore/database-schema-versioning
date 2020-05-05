@@ -20,12 +20,14 @@ The key words "must", "must not", "required", "shall", "shall not", "should", "s
 
 Additionally, the key words outlined in the following section shall be interpreted as described.
 
- * **schema name**  : The "name" for a particular schema; it should be brief and reasonably descriptive.
- * **schema version** : A numeric "version" which identifies a particular state of a database. It must be a numeric value, expressed either as an integer or a float using a decimal point (this makes it simple to keep sorting/succession consistent across different programming environments).
  * **database schema** : A single conceptual database with a continuous successive history.
+ * **schema name**  : A "name" assigned to a particular *database schema*; it should be reasonably brief and descriptive.
+ * **schema version** : A numeric "version" which identifies a particular state of a database. It must be an unsigned numeric value; either a whole number (integer) or a decimal (float). This numeric constraint makes it trivial to keep sorting/succession consistent across different programming environments).
 
 ---
 ## Resources
+This section outlines the directory structure and [JSON object](https://tools.ietf.org/html/rfc7159#section-4) files used to describe a [*database schema*](#terminology) and its [*schema versions*].
+
   * [**schema root**](#schema-root) : The directory which contains all resources needed to describe a single [*database schema*](#terminology).
   * [**schema.json**](#schemajson) : The file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single [*database schema*](#terminology). This file must be contained within the [*schema root*](#schema-root).
   * [**version root**](#version-root) : A directory which contains all resources needed to describe a single [*schema version*](#terminology).
