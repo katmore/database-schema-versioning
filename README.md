@@ -11,6 +11,7 @@ The *Database Schema Versioning Specification* (or "db-schema-spec" for short) d
 ```
 
 #### Specification Releases
+**major.minor release history**
   * v**1.1** : Initial release
 
 ---
