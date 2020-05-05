@@ -2,7 +2,7 @@
 
 This goal of this project is to establish a specification to describe database schemas that lends itself to programmatic access, yet is reasonable for a human to examine and interact with. This will facilitate the ongoing automation of commands that perform changes to databases; typically known as "database revisions" or "database migrations".
 
-## Latest Release
+**Latest Release**
 ```json
 {
    "db-schema-spec": "1.1.0"
@@ -11,19 +11,20 @@ This goal of this project is to establish a specification to describe database s
 
 ---
 ## Terminology
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.
+The key words "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-These are some special terms that shall be interpreted as described in the following bullet-point list.
+Additionally, the key words outlined in the following section shall be interpreted as described.
 
  * **schema name**  : The "name" for a particular schema; it should be brief and reasonably descriptive.
  * **schema version** : A numeric "version" which identifies a particular revision of a database schema. It must be a numeric value, expressed either as an integer or a float using a decimal point (this makes it simple to keep sorting/succession consistent across different programming environments).
+ * **database schema**
 
 ---
 ## Resources
   * [**schema root**](#schema-root) : The directory which contains all resources needed to describe a single database schema.
   * [**schema.json**](#schemajson) : The file containing the a json object that describes a single *database schema*. It must be contained within the *schema root*.
   * [**version root**](#version-root) : A directory which contains all resources needed to describe a single *schema version*.
-  * [**version.json**](#schemajson) : A file containing a json object that describes a single *schema version*.
+  * [**version.json**](#schemajson) : A file containing a json object that describes a single *schema version*. It must be contained within the *version root*.
   
 ---
 ### schema root
@@ -62,13 +63,13 @@ my-project/ ->
 
 ---
 ### schema.json
-The **schema.json** file contains a single json object that describes a *database schema*. It must be located in the top-level of the *schema root* which it describes. The json object must contain all the properties as described in the following bullet-point list.
+The **schema.json** file contains a single json object that describes a [*database schema*](#terminology). It must be located in the top-level of the [*schema root*](#schema-root) which it describes. The json object must contain all the properties as described in the following bullet-point list.
 
  * **db-schema-spec** : The [Database Schema Versioning](https://github.com/katmore/database-schema-versioning#Specification-Details) specification version being used in this json object.
- * **name** : The *schema name* of the *database schema* being described.
- * **system-type** : The database system of the *database schema* being described; e.g. "mysql", "mongo", "reddis", etc.
- * **current-version** : The current *schema-version* of the *database schema*.
- * **version-history** : An object with each property name corresponding to a *schema version* and the value being the path to the corresponding *version root* directory (relative to the *schema root*). Therefore, each path must point to a directory containing a *version.json* file.
+ * **name** : The [*schema name*](#terminology) of the [*database schema*](#terminology) being described.
+ * **system-type** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
+ * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
+ * **version-history** : An object with each property name corresponding to a [*schema-version*](#terminology) and the value being the path to the corresponding [*version root*](#resources) directory (relative to the [*schema root*](#schema-root)). Therefore, each path must point to a directory containing a [*version.json*](#versionjson) file.
 
 **schema.json* example #1...**
 ```json
@@ -99,15 +100,16 @@ The **schema.json** file contains a single json object that describes a *databas
    }
 }
 ```
+
 ---
 ### version.json
-The **version.json** file contains a single json object that describes a *schema version*. It must be contained in the top level of the *version root* it describes. 
+The **version.json** file contains a single json object that describes a [*schema-version*](#terminology). It must be contained in the top level of the [*version root*](#resources) it describes. 
 
-The json object in *version.json* must contain ALL of the following properties as described:
+The json object in [*version.json*](#versionjson) must contain ALL of the following properties as described:
 
-  * **schema** : The name of database schema. It should be cross-checked to match the *name* property of the referring *schema.json* file.
-  * **version** : A string with the value of the *schema version* that is being described. It should be cross-checked to match with the referring property in the *version-history* object of the *schema.json* file.
-  * **source** : An array of strings; each value is a path (relative to the *version root*) to a source file that must be successfully executed. Each source file must be executed in the order it appears in the array.
+  * **schema** : The name of database schema. It should be cross-checked to match the `name` property of the referring [*schema.json*](#schemajson) file.
+  * **version** : A string with the value of the [*schema version*](#terminology) that is being described. It should be cross-checked to match with the referring property in the `version-history` object of the [*schema.json*](#schemajson) file.
+  * **source** : An array of strings; each value is a path (relative to the [*version root*](#resources)) to a source file that must be successfully executed. Each source file must be executed in the order it appears in the array.
 
 #### version.json examples
 **version.json* example #1...**
