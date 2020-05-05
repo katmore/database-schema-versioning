@@ -2,12 +2,15 @@ This project contains a specification which describes a database structure and i
 
 # Database Schema Versioning Specification
 
-**Latest Release**
+#### Latest Release
 ```json
 {
-   "db-schema-spec": "1.1.0"
+   "db-schema-spec": "1.1"
 }
 ```
+
+#### Release Summary
+  * v**1.1** : Initial release
 
 ---
 ## Terminology
@@ -65,7 +68,7 @@ my-project/ ->
 ### schema.json
 The **schema.json** file contains a single [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a [*database schema*](#terminology). It must be located in the top-level of the [*schema root*](#schema-root) which it describes. The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) must contain all the properties as described in the following bullet-point list.
 
- * **db-schema-spec** : The [Database Schema Versioning](https://github.com/katmore/database-schema-versioning#Specification-Details) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
+ * **db-schema-spec** : The [Database Schema Versioning](#release-summary) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
  * **name** : The [*schema name*](#terminology) of the [*database schema*](#terminology) being described.
  * **system-type** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
  * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
@@ -74,7 +77,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 **schema.json* example #1...**
 ```json
 {
-   "db-schema-spec": "1.1.0",
+   "db-schema-spec": "1.1",
    "name" : "some-schema",
    "system-type" : "mysql",
    "current-version" : "20.043001",
@@ -89,7 +92,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 **schema.json* example #2...**
 ```json
 {
-   "db-schema-spec": "1.1.0",
+   "db-schema-spec": "1.1",
    "name" : "another-schema",
    "system-type" : "mysql",
    "current-version" : "1.1",
@@ -107,7 +110,7 @@ The **version.json** file contains a single [JSON object](https://tools.ietf.org
 
 The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.json*](#versionjson) must contain ALL of the following properties as described:
 
-  * **db-schema-spec** : The [Database Schema Versioning](https://github.com/katmore/database-schema-versioning#Specification-Details) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
+  * **db-schema-spec** : The [Database Schema Versioning](#release-summary) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
   * **schema** : The name of database schema. It should be cross-checked to match the `name` property of the referring [*schema.json*](#schemajson) file.
   * **version** : A string with the value of the [*schema version*](#terminology) that is being described. It should be cross-checked to match with the referring property in the `version-history` object of the [*schema.json*](#schemajson) file.
   * **source** : An array of strings; each value is a path (relative to the [*version root*](#resources)) to a source file that must be successfully executed. Each source file must be executed in the order it occurs in the array.
@@ -116,7 +119,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 **version.json* example #1...**
 ```json
 {
-   "db-schema-spec": "1.1.0",
+   "db-schema-spec": "1.1",
    "schema" : "some-schema",
    "system-type" : "mysql",
    "version" : "200430.01",
@@ -129,7 +132,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 **version.json* example #2...**
 ```json
 {
-   "db-schema-spec": "1.1.0",
+   "db-schema-spec": "1.1",
    "schema" : "another-schema",
    "system-type" : "mysql",
    "version" : "1.0",
