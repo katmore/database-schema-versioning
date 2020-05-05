@@ -26,7 +26,7 @@ Additionally, the key words outlined in the following section shall be interpret
 
 ---
 ## Resources
-This section outlines the directory structure and [JSON object](https://tools.ietf.org/html/rfc7159#section-4) files used to describe a [*database schema*](#terminology) and its [*schema versions*].
+This section outlines the directory structure and [JSON object](https://tools.ietf.org/html/rfc7159#section-4) files used to describe a [*database schema*](#terminology) and its [*schema versions*](#terminology).
 
   * [**schema root**](#schema-root) : The directory which contains all resources needed to describe a single [*database schema*](#terminology).
   * [**schema.json**](#schemajson) : The file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single [*database schema*](#terminology). This file must be contained within the [*schema root*](#schema-root).
