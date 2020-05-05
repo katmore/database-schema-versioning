@@ -1,6 +1,6 @@
 # Database Schema Versioning
 
-This goal of this project is to establish a specification to describe database schemas that lends itself to programmatic access, yet is reasonable for a human to examine and interact with. This will facilitate the ongoing automation of commands that perform changes to databases; typically known as "database revisions" or "database migrations".
+This project contains a specification which describes a database structure and revisions thereupon. The goal is a format that lends itself to programmatic access, yet feasibly allowing direct human interaction. This will facilitate the ongoing automation of database changes; known as "database revisions" or "database migrations".
 
 **Latest Release**
 ```json
@@ -22,15 +22,15 @@ Additionally, the key words outlined in the following section shall be interpret
 ---
 ## Resources
   * [**schema root**](#schema-root) : The directory which contains all resources needed to describe a single database schema.
-  * [**schema.json**](#schemajson) : The file containing the a json object that describes a single *database schema*. It must be contained within the *schema root*.
+  * [**schema.json**](#schemajson) : The file containing the a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *database schema*. It must be contained within the *schema root*.
   * [**version root**](#version-root) : A directory which contains all resources needed to describe a single *schema version*.
-  * [**version.json**](#schemajson) : A file containing a json object that describes a single *schema version*. It must be contained within the *version root*.
+  * [**version.json**](#schemajson) : A file containing a [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a single *schema version*. It must be contained within the *version root*.
   
 ---
 ### schema root
 The *schema root* must be a directory that contains all resources needed to describe a single database schema. It should be a directory specific to the schema and should be the same name as the schema. It must contain a *schema.json* file.
 
-Consider an example project named `my-project` with the following directory structure: it contains a directory to hold all database schemas named "db-schema", which, in turn, contains specifications for two database schemas having the names `some-schema` and `another schema`. Therefore, the path `my-project/db-schema/some-schema` is the *schema root* for `some-schema`; likewise, the path `my-project/db-schema/some-schema` is the *schema root* for `another-schema`.
+Consider an example project named `my-project` with the following directory structure: it contains a directory named "db-schema" that holds all database schemas, which, in turn, contains directories for the specifications of the [*schemas*](#terminology) having the names `some-schema` and `another schema`. Therefore, the path `my-project/db-schema/some-schema` is the *schema root* for `some-schema`; likewise, the path `my-project/db-schema/some-schema` is the *schema root* for `another-schema`.
 
 **Example project contents...**
 ```txt
@@ -63,9 +63,9 @@ my-project/ ->
 
 ---
 ### schema.json
-The **schema.json** file contains a single json object that describes a [*database schema*](#terminology). It must be located in the top-level of the [*schema root*](#schema-root) which it describes. The json object must contain all the properties as described in the following bullet-point list.
+The **schema.json** file contains a single [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a [*database schema*](#terminology). It must be located in the top-level of the [*schema root*](#schema-root) which it describes. The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) must contain all the properties as described in the following bullet-point list.
 
- * **db-schema-spec** : The [Database Schema Versioning](https://github.com/katmore/database-schema-versioning#Specification-Details) specification version being used in this json object.
+ * **db-schema-spec** : The [Database Schema Versioning](https://github.com/katmore/database-schema-versioning#Specification-Details) specification version being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
  * **name** : The [*schema name*](#terminology) of the [*database schema*](#terminology) being described.
  * **system-type** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
  * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
@@ -103,9 +103,9 @@ The **schema.json** file contains a single json object that describes a [*databa
 
 ---
 ### version.json
-The **version.json** file contains a single json object that describes a [*schema-version*](#terminology). It must be contained in the top level of the [*version root*](#resources) it describes. 
+The **version.json** file contains a single [JSON object](https://tools.ietf.org/html/rfc7159#section-4) that describes a [*schema-version*](#terminology). It must be contained in the top level of the [*version root*](#resources) it describes. 
 
-The json object in [*version.json*](#versionjson) must contain ALL of the following properties as described:
+The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.json*](#versionjson) must contain ALL of the following properties as described:
 
   * **schema** : The name of database schema. It should be cross-checked to match the `name` property of the referring [*schema.json*](#schemajson) file.
   * **version** : A string with the value of the [*schema version*](#terminology) that is being described. It should be cross-checked to match with the referring property in the `version-history` object of the [*schema.json*](#schemajson) file.
