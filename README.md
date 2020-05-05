@@ -1,6 +1,6 @@
 # Database Schema Versioning
 
-This goal of this project is to establish a specification to describe database revisions that lends itself to programmatic access, yet is easy for a human to examine.
+This goal of this project is to establish a specification to describe database schemas that lends itself to programmatic access, yet is reasonable for a human to examine and interact with. This will facilitate the ongoing automation of commands that perform changes to databases; typically known as "database revisions" or "database migrations".
 
 ## Latest Release
 ```json
@@ -11,6 +11,10 @@ This goal of this project is to establish a specification to describe database r
 
 ---
 ## Terminology
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.
+
+These are some special terms that shall be interpreted as described in the following bullet-point list.
+
  * **schema name**  : The "name" for a particular schema; it should be brief and reasonably descriptive.
  * **schema version** : A numeric "version" which identifies a particular revision of a database schema. It must be a numeric value, expressed either as an integer or a float using a decimal point (this makes it simple to keep sorting/succession consistent across different programming environments).
 
