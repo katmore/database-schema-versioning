@@ -1,6 +1,6 @@
 # Database Schema Versioning
 
-This project contains a specification which describes a database structure and its revisions. The goal is a format that lends itself to programmatic access, yet feasibly allowing direct human interaction. This will facilitate the ongoing automation of database changes; known as "database revisions" or "database migrations".
+This project contains a specification which describes a database structure and its revisions. The goal is providing a specification that lends itself to programmatic access, yet feasibly allows direct human examination and interaction. This will facilitate the ongoing automation of database changes; known as "database revisions" or "database migrations".
 
 **Latest Release**
 ```json
