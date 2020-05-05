@@ -18,7 +18,7 @@ Additionally, the key words outlined in the following section shall be interpret
 
  * **database schema** : A single conceptual database with a continuous successive history.
  * **schema name**  : A "name" assigned to a particular *database schema*; it should be reasonably brief and descriptive.
- * **schema version** : A numeric "version" which identifies a particular state of a database. It must be an unsigned numeric value; either a whole number (integer) or a decimal (float). This numeric constraint makes it trivial to keep sorting/succession consistent across different programming environments).
+ * **schema version** : A numeric "version" which identifies a particular state of a database. It must be an unsigned numeric value; either a whole number (integer) or a decimal (float). This numeric constraint makes it trivial to keep sorting/succession consistent across different programming environments.
 
 ---
 ## Resources
