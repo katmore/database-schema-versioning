@@ -7,9 +7,9 @@ The *Database Schema Versioning Specification* (or "db-schema-spec" for short) d
  * **db-schema-spec** : `1.1`
 
 #### Release History
-*major.minor release history*
-  * *db-schema-spec : `1.1`* -  Initial release
-
+ * *db-schema-spec : `1.1`* - Initial release
+ * *db-schema-spec : `1.0`* - Development/pre-release
+ 
 ---
 ## Terminology
 The key words "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
