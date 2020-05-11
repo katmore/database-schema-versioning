@@ -18,7 +18,7 @@ ME_NAME=$(basename "$ME_SOURCE")
 #
 # default configuration
 #
-SCHEMA_ROOT="$PWD"
+WORKING_DIR="$PWD"
 MONGO_CMD=mongo
 USE_FLAT_CONFIG=0
 MONGO_OPTS=" --quiet"
@@ -29,8 +29,8 @@ ABOUT_MODE=0
 USAGE_MODE=0
 HELP_MODE=0
 CUSTOM_MONGO_CMD=0
-DEFAULT_SCHEMA_ROOT=$SCHEMA_ROOT
-CUSTOM_SCHEMA_ROOT=0
+DEFAULT_WORKING_DIR=$WORKING_DIR
+CUSTOM_WORKING_DIR=0
 DEFAULT_MONGO_CMD=$MONGO_CMD
 USE_FLAT_CONFIG=0
 #
@@ -50,7 +50,7 @@ while getopts :uhav-: arg; do
            about )  ABOUT_MODE=1 ;;
            version ) ABOUT_MODE=1 ;;
            mongo-cmd=*)MONGO_CMD=$LONG_OPTARG; CUSTOM_MONGO_CMD=1 ;;
-           schema-root=*)SCHEMA_ROOT=$LONG_OPTARG; CUSTOM_SCHEMA_ROOT=1 ;;
+           working-dir=*)WORKING_DIR=$LONG_OPTARG; CUSTOM_WORKING_DIR=1 ;;
            '' )        break ;; # "--" terminates argument processing
            * )         echo "$ME_NAME: unknown option --$OPTARG" >&2; OPTION_STATUS=2 ;;
          esac ;;
@@ -60,7 +60,7 @@ done
 shift $((OPTIND-1)) # remove parsed options and args from $@ list
 if [ "$OPTION_STATUS" -ne "0" ]; then
    >&2 echo "$ME_NAME: one or more invalid options"
-   echo -e $ME_USAGE
+   >&2 echo -e "usage:\n $ME_NAME $ME_USAGE"
    exit $OPTION_STATUS
 fi
 #
@@ -83,16 +83,16 @@ fi
    echo -e "usage:\n   $ME_NAME $ME_USAGE"
    echo ""
    echo "options:"
-   echo " --schema-root=<SCHEMA-ROOT-PATH>"
-   echo "   Specify path to the schema root directory."
-   echo "   Default: $DEFAULT_SCHEMA_ROOT"
-   echo " --mongo-cmd=<mongo-cmd>"
+   echo " --working-dir=<PATH>"
+   echo "   Specify path to the working directory."
+   echo "   Default: $DEFAULT_WORKING_DIR"
+   echo " --mongo-cmd=<CMD>"
    echo "   Specify mongo command to use."
    echo "   Default: $DEFAULT_MONGO_CMD"
    echo ""
    echo "arguments:"
    echo " <DB-SCHEMA>"
-   echo " The directory name containing the 'schema.json' file within the --schema-root to reference for performing database migration."
+   echo " The directory name containing the 'schema.json' file within the --working-dir to reference for performing database migration."
    echo " <DB-NAME>"
    echo " Optionally specify name of the mongo database to supply to the mongo command when peforming database migration."
    echo " <mongo command args...>"
@@ -141,14 +141,14 @@ fi
 DB_SCHEMA=$1
 [ -n "$DB_SCHEMA" ] || {
    >&2 echo -e "$ME_NAME: missing <DB-SCHEMA>"
-   echo -e $ME_USAGE
+   >&2 echo -e "usage:\n $ME_NAME $ME_USAGE"
    exit 2
 }
 shift
 DB_NAME=$1
 [ -n "$DB_NAME" ] || {
    >&2 echo -e "$ME_NAME: missing <DB-NAME>"
-   echo -e $ME_USAGE
+   >&2 echo -e "usage:\n $ME_NAME $ME_USAGE"
    exit 2
 }
 shift
@@ -161,32 +161,32 @@ else
    MONGO_CMD="$MONGO_CMD $MONGO_OPTS $DB_NAME"
 fi
 #
-# sanity check $SCHEMA_ROOT
+# sanity check $WORKING_DIR
 #
-if [ ! -d $SCHEMA_ROOT ]; then
-   [ "$CUSTOM_SCHEMA_ROOT" = "1" ] && {
-     >&2 echo -e "$ME_NAME: the --schema-root does not exist: $SCHEMA_ROOT"
+if [ ! -d $WORKING_DIR ]; then
+   [ "$CUSTOM_WORKING_DIR" = "1" ] && {
+     >&2 echo -e "$ME_NAME: the --working-dir does not exist: $WORKING_DIR"
      exit 2
    }
-   >&2 echo -e "$ME_NAME: the default SCHEMA-ROOT-PATH does not exist: $SCHEMA_ROOT"
+   >&2 echo -e "$ME_NAME: the default PATH does not exist: $WORKING_DIR"
    exit 1
 fi
 #
 # sanity check $SCHEMA_DIR
 #
-SCHEMA_DIR=$SCHEMA_ROOT/$DB_SCHEMA
+SCHEMA_DIR=$WORKING_DIR/$DB_SCHEMA
 if [ ! -d $SCHEMA_DIR ]; then
-   if [ "$CUSTOM_SCHEMA_ROOT" = "1" ]; then
-       SCHEMA_ROOT_LABEL="the --schema-root specified ($SCHEMA_ROOT)"
+   if [ "$CUSTOM_WORKING_DIR" = "1" ]; then
+       WORKING_DIR_LABEL="the --working-dir specified ($WORKING_DIR)"
    else
-       SCHEMA_ROOT_LABEL="the default SCHEMA-ROOT-PATH ($SCHEMA_ROOT)"
+       WORKING_DIR_LABEL="the default PATH ($WORKING_DIR)"
    fi
-   >&2 echo -e "$ME_NAME: the <DB-SCHEMA> directory '$DB_SCHEMA' does not exist in $SCHEMA_ROOT_LABEL."
+   >&2 echo -e "$ME_NAME: the <DB-SCHEMA> directory '$DB_SCHEMA' does not exist in $WORKING_DIR_LABEL."
    exit 2
 fi
 SCHEMA_JSON="$SCHEMA_DIR/schema.json"
 if [ ! -f $SCHEMA_JSON ]; then
-   >&2 echo -e "$ME_NAME: 'schema.json' file is missing from the corresponding <DB-SCHEMA> directory in <SCHEMA-ROOT-PATH>. <DB-SCHEMA>: $DB_SCHEMA, <SCHEMA-ROOT-PATH>: $SCHEMA_ROOT"
+   >&2 echo -e "$ME_NAME: 'schema.json' file is missing from the corresponding <DB-SCHEMA> directory in <PATH>. <DB-SCHEMA>: $DB_SCHEMA, <PATH>: $WORKING_DIR"
    exit 1
 fi
 #
