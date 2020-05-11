@@ -1,4 +1,4 @@
-The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations"). Currently, only a [specification](#database-schema-versioning-specification) has been released; a related set of tools and implementations will be released in the future.
+The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations"). This project currently includes a [specification](#database-schema-versioning-specification) and [utilities](#Utilities) to perform migrations. Further documentation and tools will be released in the future.
 
 # Utilities
 The following utilities implement the [*db-schema-spec* specification](#database-schema-versioning-specification)
