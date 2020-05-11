@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# MySQL database migration utility compliant with 'db-schema-spec' v1.1.2 https://github.com/katmore/database-schema-versioning
+# MySQL database migration utility compliant with 'db-schema-spec' v1.2 https://github.com/katmore/database-schema-versioning
 #
 ME_USAGE="[-hua][<options...>] <DB-SCHEMA> <DB-NAME> [<mysql command args...>]"
-ME_ABOUT="MySQL database migration utility compliant with 'db-schema-spec' v1.1.2 https://github.com/katmore/database-schema-versioning"
+ME_ABOUT="MySQL database migration utility compliant with 'db-schema-spec' v1.2 https://github.com/katmore/database-schema-versioning"
 ME_COPYRIGHT="(c) 2011-2020 Doug Bird. All Rights Reserved. This is free software released under the MIT and GPL licenses."
 #
 # localization
