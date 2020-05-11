@@ -4,10 +4,11 @@ The goal of this project is to facilitate easy programmatic changes to a databas
 The *Database Schema Versioning Specification* (or "db-schema-spec" for short) describes the structure of a single conceptual database and its successive revisions.
 
 #### Latest Release
- * **db-schema-spec** : `1.1`
+ * **db-schema-spec** : [`1.2`](https://github.com/katmore/database-schema-versioning/releases/tag/v1.2.0) - Major update v1.2
 
-#### Release History
- * *db-schema-spec : `1.1`* - Initial release
+#### Major update history
+ * *db-schema-spec : [`1.2`](https://github.com/katmore/database-schema-versioning/releases/tag/v1.2.0)* - Major update v1.2
+ * *db-schema-spec : [`1.1`](https://github.com/katmore/database-schema-versioning/releases/tag/v1.1.0)* - Initial release
  * *db-schema-spec : `1.0`* - Development/pre-release
  
 ---
