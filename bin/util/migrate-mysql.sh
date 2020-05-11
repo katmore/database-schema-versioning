@@ -264,7 +264,7 @@ if [ "$DEPLOYED_VERSION" = "$LATEST_VERSION" ]; then
    echo "database schema '$DB_SCHEMA' is already at current-version: $LATEST_VERSION"
    exit 0
 fi
-echo "current-version: $LATEST_VERSION"
+echo "current version: $LATEST_VERSION"
 echo "deployed version: $DEPLOYED_VERSION"
 #
 # prepare for schema.json loop
@@ -284,7 +284,6 @@ do
    #
    # parse schema.json to check 'next' version
    #
-   #CHECK_VER=$(jq -e '.["version-history"]' $SCHEMA_JSON | jq -e keys | jq -r '.['$CHECK_VER_IDX']') || {
    CHECK_VER=$(jq -er '.["version-history"] | keys | sort_by(tonumber) | .['$CHECK_VER_IDX']' "$SCHEMA_JSON") || {
      #
      # jq command outputs "null" if
@@ -344,7 +343,7 @@ do
            ((SQL_IDX++))
         done
       [ "$LAST_MYSQL_STATUS" = "0" ] || {
-        >&2 echo "$ME_NAME: error processing version JSON: $VERSION_JSON"
+        >&2 echo "$ME_NAME: error processing version $CHECK_VER: $VERSION_JSON"
         exit 1
       }
       #
