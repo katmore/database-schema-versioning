@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Mongo database migration utility compliant with 'db-schema-spec' v1.2 (https://github.com/katmore/database-schema-versioning)
+# Mongo database migration utility compliant with 'db-schema-spec' v1.1.2 (https://github.com/katmore/database-schema-versioning)
 #
 ME_USAGE="[-hua][<options...>] <DB-SCHEMA> <DB-NAME> [<mongo command args...>]"
-ME_ABOUT="Mongo database migration utility compliant with 'db-schema-spec' v1.2 (https://github.com/katmore/database-schema-versioning)"
+ME_ABOUT="Mongo database migration utility compliant with 'db-schema-spec' v1.1.2 (https://github.com/katmore/database-schema-versioning)"
 ME_COPYRIGHT="(c) 2011-2020 Doug Bird. All Rights Reserved. This is free software released under the MIT and GPL licenses."
 #
 # localization
@@ -187,7 +187,6 @@ fi
 SCHEMA_JSON="$SCHEMA_DIR/schema.json"
 if [ ! -f $SCHEMA_JSON ]; then
    >&2 echo -e "$ME_NAME: 'schema.json' file is missing from the corresponding <DB-SCHEMA> directory in <SCHEMA-ROOT-PATH>. <DB-SCHEMA>: $DB_SCHEMA, <SCHEMA-ROOT-PATH>: $SCHEMA_ROOT"
-   echo -e "\n$ME_USAGE"
    exit 1
 fi
 #
@@ -197,12 +196,10 @@ SCHEMA_TYPE=$(jq -er '.system' $SCHEMA_JSON)
 CMD_STATUS=$?
 if [ "$CMD_STATUS" -ne "0" ]; then
    >&2 echo "$ME_NAME: .system JSON parse failed using file: $SCHEMA_JSON"
-   echo -e "\n$ME_USAGE"
    exit 1
 fi
 if [ "$SCHEMA_TYPE" != "mongo" ]; then
    >&2 echo "$ME_NAME: this script can only process schema type 'mongo', instead found type '$SCHEMA_TYPE' for the '$DB_SCHEMA' schema (from file '$SCHEMA_JSON')"
-   echo -e "\n$ME_USAGE"
    exit 1
 fi
 #
@@ -212,7 +209,6 @@ LATEST_VERSION=$(jq -re '.["latest-version"]' $SCHEMA_JSON)
 CMD_STATUS=$?
 if [ "$CMD_STATUS" -ne "0" ]; then
    >&2 echo "$ME_NAME: failed to process 'latest-version' from schema.json: $SCHEMA_JSON"
-   echo -e "\n$ME_USAGE"
    exit 1
 fi
 #
@@ -252,12 +248,10 @@ if [ "$CMD_STATUS" -ne "0" ]; then
    CMD_STATUS=$?
    if [ "$CMD_STATUS" -ne "0" ]; then
       >&2 echo "$ME_NAME: .version-history JSON parse failed using file: $SCHEMA_JSON"
-      echo -e "\n$ME_USAGE"
       exit 1
    fi
    if [ "$SECOND_NEWEST_VERSION" = "null" ]; then
       >&2 echo "$ME_NAME: unable to determine a fallback 'DEPLOYED_VERSION' from schema.json: $SCHEMA_JSON"
-      echo -e "\n$ME_USAGE"
       exit 1
    fi
    UPDATE_REVISION_JS='db.db_schema_revision.findOneAndUpdate({"version":"1.0"},{$set:{"version":"1.0","active" : true, "source" : "manual"}},{upsert:true});'
@@ -328,7 +322,6 @@ do
    CMD_STATUS=$?
    if [ "$CMD_STATUS" -ne "0" ]; then
       >&2 echo "$ME_NAME: .version-history[$CHECK_VER_IDX] JSON parse failed using file: $SCHEMA_JSON"
-      echo -e "\n$ME_USAGE"
       exit 1
    fi
    #
@@ -383,7 +376,7 @@ do
          ((JS_IDX++))
       done < <(jq '.["js-command"]' $VERSION_JSON | jq -re -c '.[]')
       [ "$LAST_MONGO_STATUS" = "0" ] || {
-        >&2 echo "$ME_NAME: failed processing version $CHECK_VER: $VERSION_JSON"
+        >&2 echo "$ME_NAME: failed processing version: $VERSION_JSON"
         exit 1
       }
       DEPLOYED_VERSION=$CHECK_VER
