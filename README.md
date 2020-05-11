@@ -71,7 +71,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 
  * **db-schema-spec** : The [Database Schema Versioning](#release-history) specification release being used in this [JSON object](https://tools.ietf.org/html/rfc7159#section-4).
  * **name** : The [*schema name*](#terminology) of the [*database schema*](#terminology) being described.
- * **system-type** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
+ * **system** : The database system of the [*database schema*](#terminology) being described; e.g. "mysql", "mongo", "reddis", etc.
  * **current-version** : The current [*schema-version*](#terminology) of the [*database schema*](#terminology).
  * **version-history** : An object with each property name corresponding to a [*schema-version*](#terminology) and the value being the path to the corresponding [*version root*](#resources) directory (relative to the [*schema root*](#schema-root)). Therefore, each path must point to a directory containing a [*version.json*](#versionjson) file.
 
@@ -80,7 +80,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 {
    "db-schema-spec": "1.1",
    "name" : "something",
-   "system-type" : "mysql",
+   "system" : "mysql",
    "current-version" : "20.043001",
    "version-history" : {
       "20.043001" : "2020/043001",
@@ -95,7 +95,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 {
    "db-schema-spec": "1.1",
    "name" : "another-something",
-   "system-type" : "mysql",
+   "system" : "mysql",
    "current-version" : "1.1",
    "version-history" : {
       "1.1" : "1.1",
@@ -121,7 +121,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 {
    "db-schema-spec": "1.1",
    "schema" : "something",
-   "system-type" : "mysql",
+   "system" : "mysql",
    "version" : "200430.01",
    "command" : [
       "revisions.sql"
@@ -134,7 +134,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 {
    "db-schema-spec": "1.1",
    "schema" : "another-something",
-   "system-type" : "mysql",
+   "system" : "mysql",
    "version" : "1.0",
    "command" : [
       "DAL-revisions.sql",
