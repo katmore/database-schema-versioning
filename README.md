@@ -1,5 +1,10 @@
 The goal of this project is to facilitate easy programmatic changes to a database (known as "database revisions" or "database migrations"). Currently, only a [specification](#database-schema-versioning-specification) has been released; a related set of tools and implementations will be released in the future.
 
+# Utilities
+The following utilities implement the [*db-schema-spec* specification](#database-schema-versioning-specification)
+ * [bin/util/migrate-mysql.sh](/bin/util/migrate-mysql.sh) - migrate a *mysql* database
+ * [bin/util/migrate-mongo.sh](/bin/util/migrate-mongo.sh) - migrate a *mongo* database
+
 # Database Schema Versioning Specification
 The *Database Schema Versioning Specification* (or "db-schema-spec" for short) describes the structure of a single conceptual database and its successive revisions.
 
