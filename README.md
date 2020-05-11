@@ -83,7 +83,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 ***schema.json* example #1...**
 ```json
 {
-   "db-schema-spec": "1.1",
+   "db-schema-spec": "1.2",
    "name" : "something",
    "system" : "mysql",
    "current-version" : "20.043001",
@@ -98,7 +98,7 @@ The **schema.json** file contains a single [JSON object](https://tools.ietf.org/
 ***schema.json* example #2...**
 ```json
 {
-   "db-schema-spec": "1.1",
+   "db-schema-spec": "1.2",
    "name" : "another-something",
    "system" : "mysql",
    "current-version" : "1.1",
@@ -124,7 +124,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 ***version.json* example #1...**
 ```json
 {
-   "db-schema-spec": "1.1",
+   "db-schema-spec": "1.2",
    "schema" : "something",
    "system" : "mysql",
    "version" : "200430.01",
@@ -137,7 +137,7 @@ The [JSON object](https://tools.ietf.org/html/rfc7159#section-4) in [*version.js
 ***version.json* example #2...**
 ```json
 {
-   "db-schema-spec": "1.1",
+   "db-schema-spec": "1.2",
    "schema" : "another-something",
    "system" : "mysql",
    "version" : "1.0",
