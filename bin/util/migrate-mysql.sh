@@ -18,7 +18,7 @@ ME_NAME=$(basename "$ME_SOURCE")
 #
 # default configuration
 #
-SCHEMA_ROOT="$ME_DIR"
+SCHEMA_ROOT="$PWD"
 MYSQL_CMD=mysql
 #
 # option values
