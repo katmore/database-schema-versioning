@@ -364,8 +364,6 @@ do
          exit 1
       fi
    fi
-   echo CHECK_VER: $CHECK_VER
-   echo DEPLOYED_VERSION: $DEPLOYED_VERSION
    if [ "$CHECK_VER" = "$DEPLOYED_VERSION" ]; then
      echo DO_NEXT_VER_CMDS
       DO_NEXT_VER_CMDS=1
