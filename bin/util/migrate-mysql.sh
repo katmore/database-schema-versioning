@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# MySQL database migration utility compliant with https://github.com/katmore/database-schema-versioning
+# MySQL database migration utility compliant with 'db-schema-spec' v1.1.2 https://github.com/katmore/database-schema-versioning
 #
 ME_USAGE="[-hua][<options...>] <DB-SCHEMA> <DB-NAME> [<mysql command args...>]"
-ME_ABOUT="MySQL database migration utility compliant with https://github.com/katmore/database-schema-versioning"
+ME_ABOUT="MySQL database migration utility compliant with 'db-schema-spec' v1.1.2 https://github.com/katmore/database-schema-versioning"
 ME_COPYRIGHT="(c) 2011-2020 Doug Bird. All Rights Reserved. This is free software released under the MIT and GPL licenses."
 #
 # localization
@@ -89,7 +89,7 @@ fi
    echo ""
    echo "arguments:"
    echo " <DB-SCHEMA>"
-   echo " The directory name containing the 'db-schema.json' file within the --schema-root to reference for performing database migration."
+   echo " The directory name containing the 'schema.json' file within the --schema-root to reference for performing database migration."
    echo " <DB-NAME>"
    echo " Optionally specify name of the mysql database to supply to the mysql command when peforming database migration."
    echo " <mysql command args...>"
@@ -179,19 +179,19 @@ if [ ! -d $SCHEMA_DIR ]; then
    >&2 echo -e "$ME_NAME: the <DB-SCHEMA> directory '$DB_SCHEMA' does not exist in $SCHEMA_ROOT_LABEL."
    exit 2
 fi
-SCHEMA_JSON="$SCHEMA_DIR/db-schema.json"
+SCHEMA_JSON="$SCHEMA_DIR/schema.json"
 [ -f "$SCHEMA_JSON" ] || {
-   >&2 echo -e "$ME_NAME: 'db-schema.json' file is missing from the corresponding <DB-SCHEMA> directory in <SCHEMA-ROOT-PATH>. <DB-SCHEMA>: $DB_SCHEMA, <SCHEMA-ROOT-PATH>: $SCHEMA_ROOT"
+   >&2 echo -e "$ME_NAME: 'schema.json' file is missing from the corresponding <DB-SCHEMA> directory in <SCHEMA-ROOT-PATH>. <DB-SCHEMA>: $DB_SCHEMA, <SCHEMA-ROOT-PATH>: $SCHEMA_ROOT"
    echo -e "\n$ME_NAME $ME_USAGE"
    exit 1
 }
 
 [ -r "$SCHEMA_JSON" ] || {
-   >&2 echo -e "$ME_NAME: missing read permission for 'db-schema.json' file: $SCHEMA_JSON" 
+   >&2 echo -e "$ME_NAME: missing read permission for 'schema.json' file: $SCHEMA_JSON" 
    exit 1
 }
 #
-# sanity check schema 'type' (db-schema.json.system)
+# sanity check schema 'type' (schema.json.system)
 #
 SCHEMA_SYSTEM=$(jq -er '.system' $SCHEMA_JSON) || {
    >&2 echo "$ME_NAME: .system JSON parse failed using file: $SCHEMA_JSON"
@@ -233,7 +233,7 @@ DEPLOYED_VERSION=$(echo $DEPLOYED_VERSION_SQL | $MYSQL_CMD -N 2> /dev/null) || {
 if [ -z "$DEPLOYED_VERSION" ]; then
    >&2 echo "$ME_NAME: (WARNING) the 'DEPLOYED_VERSION' could not be found in the database using table 'db_schema_revision'"
    SECOND_NEWEST_VERSION=$(jq -er '.["version-history"] | keys | .[length-2]' "$SCHEMA_JSON") || {
-      >&2 echo "$ME_NAME: unable to determine a fallback 'DEPLOYED_VERSION' from db-schema.json: $SCHEMA_JSON"
+      >&2 echo "$ME_NAME: unable to determine a fallback 'DEPLOYED_VERSION' from schema.json: $SCHEMA_JSON"
       exit 1
    }
    UPDATE_REVISION_SQL="INSERT INTO\ndb_schema_revision\nSET\nversion='$SECOND_NEWEST_VERSION',\nactive=1,\nsource='manual'\nON DUPLICATE KEY UPDATE\nactive=1,\nsource='migrate-mysql'"
@@ -267,13 +267,13 @@ fi
 echo "current-version: $LATEST_VERSION"
 echo "deployed version: $DEPLOYED_VERSION"
 #
-# prepare for db-schema.json loop
+# prepare for schema.json loop
 #
 CHECK_VER_IDX=0 #current IDX of .version-history hashmap
 DO_NEXT_VER_CMDS=0 #flag to execute the revision commands
 #
 # version-history loop:
-#   loop through db-schema.json.version-history: 
+#   loop through schema.json.version-history: 
 #      find current current version;
 #         and go to the very next, 
 #         (and next, and next, etc.) 
@@ -282,7 +282,7 @@ DO_NEXT_VER_CMDS=0 #flag to execute the revision commands
 while :
 do
    #
-   # parse db-schema.json to check 'next' version
+   # parse schema.json to check 'next' version
    #
    #CHECK_VER=$(jq -e '.["version-history"]' $SCHEMA_JSON | jq -e keys | jq -r '.['$CHECK_VER_IDX']') || {
    CHECK_VER=$(jq -er '.["version-history"] | keys | sort_by(tonumber) | .['$CHECK_VER_IDX']' "$SCHEMA_JSON") || {
@@ -306,7 +306,7 @@ do
    if [ "$DO_NEXT_VER_CMDS" -eq "1" ]; then
       #
       # determine the path to the 
-      #    db-version.json file for the 
+      #    version.json file for the 
       #    current version (within this 
       #    loop)
       #
@@ -315,14 +315,14 @@ do
         echo -e "\n$ME_USAGE"
         exit 1
       }
-      VERSION_JSON=$SCHEMA_DIR/$VERSION_DIR/db-version.json
+      VERSION_JSON=$SCHEMA_DIR/$VERSION_DIR/version.json
       SQL_IDX=0
       LAST_MYSQL_STATUS=
       #
       # sql-command loop:
       #   loop to execute each command 
       #   file in the array:
-      #      db-version.json.sql-command
+      #      version.json.sql-command
       #
       #for sql_file_basename in "${SQL_COMMAND[@]}"; do
       jq -erc '.["sql-command"] | .[]' "$VERSION_JSON" |
@@ -330,7 +330,7 @@ do
            SQL_FILE=$SCHEMA_DIR/$VERSION_DIR/$sql_file_basename
            echo "SQL_FILE: $SQL_FILE"
            if [ ! -f $SQL_FILE ]; then
-              >&2 echo "$ME_NAME: sql-command file '$sql_file_basename' not found, from db-version.json.['sql-command']["$SQL_IDX"], SQL_FILE: $SQL_FILE"
+              >&2 echo "$ME_NAME: sql-command file '$sql_file_basename' not found, from version.json.['sql-command']["$SQL_IDX"], SQL_FILE: $SQL_FILE"
               exit 1
            fi
            echo "executing version $CHECK_VER sql-command: $VERSION_DIR/$sql_file_basename"
@@ -338,7 +338,7 @@ do
            LAST_MYSQL_STATUS=$?
            if [ "$LAST_MYSQL_STATUS" -ne "0" ]; then
               >&2 echo -e "mysql: $CMD_OUT"
-              >&2 echo "$ME_NAME: mysql error while executing sql-command '$sql_file_basename', from db-version.json.['sql-command']["$SQL_IDX"], SQL_FILE: $SQL_FILE"
+              >&2 echo "$ME_NAME: mysql error while executing sql-command '$sql_file_basename', from version.json.['sql-command']["$SQL_IDX"], SQL_FILE: $SQL_FILE"
               exit 1
            fi
            ((SQL_IDX++))
@@ -375,7 +375,6 @@ do
 done #END version-history loop
 
 echo "database has been successfully migrated to latest version: $DEPLOYED_VERSION"
-
 
 
 
