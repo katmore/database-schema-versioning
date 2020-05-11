@@ -383,7 +383,7 @@ do
          ((JS_IDX++))
       done < <(jq '.["js-command"]' $VERSION_JSON | jq -re -c '.[]')
       [ "$LAST_MONGO_STATUS" = "0" ] || {
-        >&2 echo "$ME_NAME: failed processing version: $VERSION_JSON"
+        >&2 echo "$ME_NAME: failed processing version $CHECK_VER: $VERSION_JSON"
         exit 1
       }
       DEPLOYED_VERSION=$CHECK_VER
